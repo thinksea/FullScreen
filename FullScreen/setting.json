@@ -1,0 +1,42 @@
+{
+    "BackgroundColor": "Black",
+    "BackgroundImage": "",
+    "BackgroundImageLayout": "Zoom",
+    "TopMost": true,
+    "MainTitle": {
+        "Show": true,
+        "TextContent": "主标题",
+        "FontName": "微软雅黑",
+        "FontSize": 96,
+        "TextColor": "Yellow",
+        "ShowStroke": true,
+        "StrokeColor": "Black",
+        "ShowShadow": true,
+        "ShadowOffset": 5,
+        "ShadowAlpha": 100,
+        "ShowShadowStroke": true,
+        "ShadowStrokeColor": "Black",
+        "HorizontalAlignment": "Center",
+        "VerticalAlignment": "Center",
+        "X": 0,
+        "Y": 0
+    },
+    "SubTitle": {
+        "Show": true,
+        "TextContent": "副标题",
+        "FontName": "微软雅黑",
+        "FontSize": 64,
+        "TextColor": "Yellow",
+        "ShowStroke": true,
+        "StrokeColor": "Black",
+        "ShowShadow": true,
+        "ShadowOffset": 5,
+        "ShadowAlpha": 100,
+        "ShowShadowStroke": true,
+        "ShadowStrokeColor": "Black",
+        "HorizontalAlignment": "Center",
+        "VerticalAlignment": "Near",
+        "X": 0,
+        "Y": 0
+    }
+}
