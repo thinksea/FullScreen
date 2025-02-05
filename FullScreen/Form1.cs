@@ -1,4 +1,5 @@
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace FullScreen
 {
@@ -237,34 +238,40 @@ namespace FullScreen
             {
                 string jsonSetting = System.IO.File.ReadAllText(settingFile);
                 this.Setting = System.Text.Json.JsonSerializer.Deserialize<Setting>(jsonSetting, Define.JsonDeserializeSettings);
-                #region 校正标题显示坐标，避免超出屏幕可视范围。
-                var clientSize = this.ClientSize;
-                const int fixX = 30, fixY = 20; //最大坐标偏移量，避免标题不可见。
-                if (this.Setting.MainTitle.X > clientSize.Width - fixX)
-                {
-                    this.Setting.MainTitle.X = clientSize.Width - fixX;
-                }
-                if (this.Setting.MainTitle.Y > clientSize.Height - fixY)
-                {
-                    this.Setting.MainTitle.Y = clientSize.Height - fixY;
-                }
-                if (this.Setting.SubTitle.X > clientSize.Width - fixX)
-                {
-                    this.Setting.SubTitle.X = clientSize.Width - fixX;
-                }
-                if (this.Setting.SubTitle.Y > clientSize.Height - fixY)
-                {
-                    this.Setting.SubTitle.Y = clientSize.Height - fixY;
-                }
-                #endregion
-                this.TopMost = this.Setting.TopMost;
-                this.置顶ToolStripMenuItem.Checked = this.Setting.TopMost;
-                this.BackColor = this.Setting.BackgroundColor;
-                this.BackgroundImageLayout = this.Setting.BackgroundImageLayout;
             }
+			else
+			{
+				#region 初始化设置。
+				this.Setting = new();
+				#endregion
+			}
+			#region 校正标题显示坐标，避免超出屏幕可视范围。
+			var clientSize = this.ClientSize;
+			const int fixX = 30, fixY = 20; //最大坐标偏移量，避免标题不可见。
+			if (this.Setting.MainTitle.X > clientSize.Width - fixX)
+			{
+				this.Setting.MainTitle.X = clientSize.Width - fixX;
+			}
+			if (this.Setting.MainTitle.Y > clientSize.Height - fixY)
+			{
+				this.Setting.MainTitle.Y = clientSize.Height - fixY;
+			}
+			if (this.Setting.SubTitle.X > clientSize.Width - fixX)
+			{
+				this.Setting.SubTitle.X = clientSize.Width - fixX;
+			}
+			if (this.Setting.SubTitle.Y > clientSize.Height - fixY)
+			{
+				this.Setting.SubTitle.Y = clientSize.Height - fixY;
+			}
+			#endregion
+			this.TopMost = this.Setting.TopMost;
+			this.置顶ToolStripMenuItem.Checked = this.Setting.TopMost;
+			this.BackColor = this.Setting.BackgroundColor;
+			this.BackgroundImageLayout = this.Setting.BackgroundImageLayout;
 
-            #region 加载图片文件列表。
-            this.Images.Add("", null);
+			#region 加载图片文件列表。
+			this.Images.Add("", null);
             if (!System.IO.Directory.Exists(Define.ImageDirectory))
             {
                 System.IO.Directory.CreateDirectory(Define.ImageDirectory);
@@ -368,27 +375,51 @@ namespace FullScreen
             this.保存设置();
         }
 
-        private void 选项ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SettingForm form = new();
-            form.SetDrawBoxSize(this.ClientSize);
-            if (this.Setting != null)
-            {
-                form.Setting = this.Setting;
-            }
-            if (form.ShowDialog(this) == DialogResult.OK)
-            {
-                this.Setting = form.Setting;
-                this.TopMost = this.Setting.TopMost;
-                this.置顶ToolStripMenuItem.Checked = this.Setting.TopMost;
-                this.BackColor = this.Setting.BackgroundColor;
-				this.BackgroundImageLayout = this.Setting.BackgroundImageLayout;
-				this.ShowImage(this.Setting.BackgroundImage);
-                this.Refresh();
-            }
-        }
+		private SettingForm settingForm;
+		private Setting oldSetting;
 
-        private void 帮助ToolStripMenuItem_Click(object sender, EventArgs e)
+		private void 选项ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			this.oldSetting = this.Setting;
+			if (this.settingForm == null)
+			{
+				this.settingForm = new();
+			}
+			this.settingForm.SetDrawBoxSize(this.ClientSize);
+			this.settingForm.Setting = this.Setting;
+			this.settingForm.SettingChanged += Form_SettingChanged;
+
+            if (this.settingForm.ShowDialog(this) == DialogResult.OK)
+            {
+                this.Setting = this.settingForm.Setting;
+            }
+            else
+            {
+                this.Setting = this.oldSetting;
+            }
+			this.TopMost = this.Setting.TopMost;
+			this.置顶ToolStripMenuItem.Checked = this.Setting.TopMost;
+			this.BackColor = this.Setting.BackgroundColor;
+			this.BackgroundImageLayout = this.Setting.BackgroundImageLayout;
+			this.ShowImage(this.Setting.BackgroundImage);
+			this.Refresh();
+		}
+
+		/// <summary>
+		/// 当设置更改时调用此方法预览效果。
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void Form_SettingChanged(object? sender, EventArgs e)
+		{
+			this.Setting = this.settingForm.Setting;
+			this.BackColor = this.Setting.BackgroundColor;
+			this.BackgroundImageLayout = this.Setting.BackgroundImageLayout;
+			this.ShowImage(this.Setting.BackgroundImage);
+			this.Refresh();
+		}
+
+		private void 帮助ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             About form = new About();
             form.ShowDialog(this);

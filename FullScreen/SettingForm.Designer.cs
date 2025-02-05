@@ -165,6 +165,7 @@
 			cb主标题阴影描边.TabIndex = 4;
 			cb主标题阴影描边.Text = "阴影描边";
 			cb主标题阴影描边.UseVisualStyleBackColor = true;
+			cb主标题阴影描边.CheckedChanged += cb主标题阴影描边_CheckedChanged;
 			// 
 			// btn主标题描边颜色
 			// 
@@ -230,6 +231,7 @@
 			cb主标题字体.TabIndex = 3;
 			cb主标题字体.DrawItem += cb主标题字体_DrawItem;
 			cb主标题字体.MeasureItem += cb主标题字体_MeasureItem;
+			cb主标题字体.SelectedIndexChanged += cb主标题字体_SelectedIndexChanged;
 			// 
 			// label2
 			// 
@@ -299,6 +301,7 @@
 			nud主标题阴影距离.Size = new Size(61, 23);
 			nud主标题阴影距离.TabIndex = 1;
 			nud主标题阴影距离.Value = new decimal(new int[] { 1, 0, 0, 0 });
+			nud主标题阴影距离.ValueChanged += nud主标题阴影距离_ValueChanged;
 			// 
 			// label14
 			// 
@@ -317,6 +320,7 @@
 			nud主标题阴影的透明度.Name = "nud主标题阴影的透明度";
 			nud主标题阴影的透明度.Size = new Size(67, 23);
 			nud主标题阴影的透明度.TabIndex = 3;
+			nud主标题阴影的透明度.ValueChanged += nud主标题阴影的透明度_ValueChanged;
 			// 
 			// label5
 			// 
@@ -346,6 +350,7 @@
 			nud主标题字号.Size = new Size(72, 23);
 			nud主标题字号.TabIndex = 7;
 			nud主标题字号.Value = new decimal(new int[] { 24, 0, 0, 0 });
+			nud主标题字号.ValueChanged += nud主标题字号_ValueChanged;
 			// 
 			// label6
 			// 
@@ -366,6 +371,7 @@
 			cb背景图文件.Name = "cb背景图文件";
 			cb背景图文件.Size = new Size(219, 25);
 			cb背景图文件.TabIndex = 3;
+			cb背景图文件.SelectedIndexChanged += cb背景图文件_SelectedIndexChanged;
 			// 
 			// gb显示主标题
 			// 
@@ -404,6 +410,7 @@
 			nud主标题垂直坐标.Name = "nud主标题垂直坐标";
 			nud主标题垂直坐标.Size = new Size(72, 23);
 			nud主标题垂直坐标.TabIndex = 19;
+			nud主标题垂直坐标.ValueChanged += nud主标题垂直坐标_ValueChanged;
 			// 
 			// l主标题垂直坐标
 			// 
@@ -422,6 +429,7 @@
 			nud主标题水平坐标.Name = "nud主标题水平坐标";
 			nud主标题水平坐标.Size = new Size(72, 23);
 			nud主标题水平坐标.TabIndex = 15;
+			nud主标题水平坐标.ValueChanged += nud主标题水平坐标_ValueChanged;
 			// 
 			// l主标题水平坐标
 			// 
@@ -482,6 +490,7 @@
 			tb主标题.Name = "tb主标题";
 			tb主标题.Size = new Size(226, 23);
 			tb主标题.TabIndex = 1;
+			tb主标题.TextChanged += tb主标题_TextChanged;
 			// 
 			// label16
 			// 
@@ -544,6 +553,7 @@
 			nud副标题垂直坐标.Name = "nud副标题垂直坐标";
 			nud副标题垂直坐标.Size = new Size(72, 23);
 			nud副标题垂直坐标.TabIndex = 19;
+			nud副标题垂直坐标.ValueChanged += nud副标题垂直坐标_ValueChanged;
 			// 
 			// tb副标题
 			// 
@@ -552,6 +562,7 @@
 			tb副标题.Name = "tb副标题";
 			tb副标题.Size = new Size(226, 23);
 			tb副标题.TabIndex = 1;
+			tb副标题.TextChanged += tb副标题_TextChanged;
 			// 
 			// l副标题垂直坐标
 			// 
@@ -580,6 +591,7 @@
 			nud副标题水平坐标.Name = "nud副标题水平坐标";
 			nud副标题水平坐标.Size = new Size(72, 23);
 			nud副标题水平坐标.TabIndex = 15;
+			nud副标题水平坐标.ValueChanged += nud副标题水平坐标_ValueChanged;
 			// 
 			// label7
 			// 
@@ -612,6 +624,7 @@
 			cb副标题字体.TabIndex = 3;
 			cb副标题字体.DrawItem += cb副标题字体_DrawItem;
 			cb副标题字体.MeasureItem += cb副标题字体_MeasureItem;
+			cb副标题字体.SelectedIndexChanged += cb副标题字体_SelectedIndexChanged;
 			// 
 			// cb副标题垂直对齐方式
 			// 
@@ -633,6 +646,7 @@
 			nud副标题字号.Size = new Size(72, 23);
 			nud副标题字号.TabIndex = 7;
 			nud副标题字号.Value = new decimal(new int[] { 24, 0, 0, 0 });
+			nud副标题字号.ValueChanged += nud副标题字号_ValueChanged;
 			// 
 			// label23
 			// 
@@ -715,6 +729,7 @@
 			nud副标题阴影距离.Size = new Size(61, 23);
 			nud副标题阴影距离.TabIndex = 1;
 			nud副标题阴影距离.Value = new decimal(new int[] { 1, 0, 0, 0 });
+			nud副标题阴影距离.ValueChanged += nud副标题阴影距离_ValueChanged;
 			// 
 			// label8
 			// 
@@ -733,6 +748,7 @@
 			nud副标题阴影的透明度.Name = "nud副标题阴影的透明度";
 			nud副标题阴影的透明度.Size = new Size(67, 23);
 			nud副标题阴影的透明度.TabIndex = 3;
+			nud副标题阴影的透明度.ValueChanged += nud副标题阴影的透明度_ValueChanged;
 			// 
 			// label9
 			// 
@@ -754,6 +770,7 @@
 			cb副标题阴影描边.TabIndex = 4;
 			cb副标题阴影描边.Text = "阴影描边";
 			cb副标题阴影描边.UseVisualStyleBackColor = true;
+			cb副标题阴影描边.CheckedChanged += cb副标题阴影描边_CheckedChanged;
 			// 
 			// label11
 			// 
@@ -885,6 +902,7 @@
 			cb窗体置顶.TabIndex = 5;
 			cb窗体置顶.Text = "置顶显示";
 			cb窗体置顶.UseVisualStyleBackColor = true;
+			cb窗体置顶.CheckedChanged += cb窗体置顶_CheckedChanged;
 			// 
 			// cb背景图像布局
 			// 
@@ -894,6 +912,7 @@
 			cb背景图像布局.Name = "cb背景图像布局";
 			cb背景图像布局.Size = new Size(107, 25);
 			cb背景图像布局.TabIndex = 4;
+			cb背景图像布局.SelectedIndexChanged += cb背景图像布局_SelectedIndexChanged;
 			// 
 			// SettingForm
 			// 
